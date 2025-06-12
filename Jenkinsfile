@@ -1,21 +1,16 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo '⏳ Build : compilation en cours…'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo '✅ Test : exécution simulée des tests'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo '🚀 Deploy : déploiement simulé'
-            }
-        }
+  tools {
+    maven 'Maven 3.9.10'
+    jdk 'jdk-21'
+  }
+
+  stages {
+    stage('Build & Test') {
+      steps {
+        sh 'mvn clean install'
+      }
     }
+  }
 }
